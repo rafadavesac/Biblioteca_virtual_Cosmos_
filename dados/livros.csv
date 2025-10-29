@@ -1,0 +1,12 @@
+id,titulo,autor,genero,status,due_date,borrower_ra
+1,Orgulho e Preconceito,Jane Austen,Romance,disponivel,,
+2,O Morro dos Ventos Uivantes,Emily Brontë,Romance,disponivel,,
+3,Romeu e Julieta,William Shakespeare,Romance,disponivel,,
+4,Harry Potter e a Pedra Filosofal,J.K. Rowling,Fantasia,disponivel,,
+5,Harry Potter e a Câmara Secreta,J.K. Rowling,Fantasia,disponivel,,
+6,Harry Potter e o Prisioneiro de Azkaban,J.K. Rowling,Fantasia,emprestado,03/11/2025,1139000
+7,O Senhor dos Anéis,J.R.R. Tolkien,Fantasia,disponivel,,
+8,Percy Jackson e o Ladrão de Raios,Rick Riordan,Fantasia,disponivel,,
+9,Frankenstein,Mary Shelley,Terror,disponivel,,
+10,Drácula,Bram Stoker,Terror,disponivel,,
+11,O Iluminado,Stephen King,Terror,disponivel,,
