@@ -8,3 +8,19 @@ O sistema funciona via terminal e permite que usuários se cadastrem, façam log
 - Renovar o prazo de empréstimo
 - Devolver livros antecipadamente
 - Registrar todas as ações em um arquivo de log
+
+  ### Integrantes do Grupo
+- Carla Lima - 1139025
+- Cristina Orso - 1139000
+- Rafaela Davesac - 1138820
+
+### Tecnologias utilizadas
+- Python 3
+- Módulo os
+- Módulo csv
+- Módulo datetime
+- Dicionários
+- Funções
+- Manipulação de arquivos txt e csv
+- Tratamento de exceções
+- Estruturas condicionais e loops
