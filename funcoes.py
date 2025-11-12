@@ -1,4 +1,4 @@
-# Função Cosmos 
+# Funções da Biblioteca Cosmos.
 import os, csv
 from datetime import datetime, timedelta
 
@@ -82,7 +82,7 @@ def registrar_log(txt):
 
 def login_ou_cadastro(usuarios):
     print("\nBem-vindo ao Cosmos! Faça login ou cadastre-se.")
-    # carregar usuarios existentes na lista passada
+    # carregar usuarios existentes na lista passada ou cadastrar um novo.
     while True:
         opc = input("Digite 'l' para login, 'c' para cadastrar, ou 's' para sair: ").strip().lower()
         if opc == 's':
@@ -93,26 +93,26 @@ def login_ou_cadastro(usuarios):
                 print("RA já cadastrado. Use outro RA.")
                 continue
             nome = input("Nome completo: ").strip()
-            senha = input("Senha (visível): ").strip()
-            usuarios.append({'ra':ra,'nome':nome,'senha':senha})
-            salvar_todos([], usuarios, [])  # salva só usuarios
+            senha = input("Senha (visível): ").strip() #senha visivel para manter um padrão.
+            usuarios.append({'ra':ra,'nome':nome,'senha':senha}) # RA e senha ficam salvos após o primeiro cadastro.
+            salvar_todos([], usuarios, [])  # salva só usuarios cadastrados.
             registrar_log(f"Cadastro: {nome} (RA {ra})")
-            print("Cadastro realizado! Faça login agora.")
-            continue
+            print("Cadastro realizado! Faça login agora.") #Assim que se cadastra o sistema volta ao comando um de "Faça seu login" Sempre!
+            continue  #Após isso ele continua normalmente.
         if opc == 'l':
             ra = input("RA: ").strip(); senha = input("Senha: ").strip()
             user = next((u for u in usuarios if u['ra']==ra and u['senha']==senha), None)
             if user:
                 registrar_log(f"Login: RA {ra}")
-                print(f"Bem-vindo, {user['nome']}!")
+                print(f"Bem-vindo, {user['nome']}!") #Sistema chama pelo nome do usuario 
                 return user
             else:
-                print("RA ou senha incorretos. Tente novamente ou cadastre-se.")
+                print("RA ou senha incorretos. Tente novamente ou cadastre-se.") #Tratamento de erro.
                 continue
         print("Opção inválida. Digite 'l', 'c' ou 's'.")
 
 def listar_generos():
-    print("\nGêneros disponíveis:")
+    print("\nGêneros disponíveis:") # Listar os generos porem os livros emprestados não aparecem!
     for g in GENERO_LIST: print("-", g)
 
 def listar_livros_por_genero(livros, genero):
@@ -135,7 +135,7 @@ def contar_emprestimos_do_usuario(emprestimos, ra):
     return sum(1 for e in emprestimos if e.get('ra')==ra and e.get('returned')=='no')
 
 def retirar_livro_por_id(livros, usuarios, emprestimos, ra, book_id):
-    # checar limite
+    # checar limite de livros que o usuario tem
     qtd = contar_emprestimos_do_usuario(emprestimos, ra)
     if qtd >= MAX_POR_USUARIO:
         print(f"Você já atingiu o limite de {MAX_POR_USUARIO} livros emprestados.")
@@ -145,11 +145,11 @@ def retirar_livro_por_id(livros, usuarios, emprestimos, ra, book_id):
             if l.get('status') == 'emprestado':
                 print("Livro já emprestado.")
                 return
-            # efetivar empréstimo
+            # efetivar empréstimo do usuario
             l['status'] = 'emprestado'
             l['borrower_ra'] = ra
             due = datetime.now() + timedelta(days=7)
-            l['due_date'] = due.strftime(DATE_FMT)
+            l['due_date'] = due.strftime(DATE_FMT) 
             loan_id = str(len(emprestimos) + 1)
             emprestimos.append({'loan_id':loan_id,'book_id':book_id,'ra':ra,'loan_date':datetime.now().strftime(DATE_FMT),'due_date':l['due_date'],'returned':'no'})
             registrar_log(f"Empréstimo: livro {l['titulo']} (ID {book_id}) para RA {ra}")
@@ -161,7 +161,7 @@ def retirar_livro_por_id(livros, usuarios, emprestimos, ra, book_id):
             return
     print("Livro não encontrado.")
 
-def devolver_antecipado(livros, emprestimos, ra):
+def devolver_antecipado(livros, emprestimos, ra): # Usuario não "Curtiu" o Livro e quer devolver antes
     listar_meus_livros(livros, ra)
     book_id = input("Digite o ID do livro que vai devolver (ou 0 para voltar): ").strip()
     if book_id == '0' or book_id == '':
@@ -176,7 +176,7 @@ def devolver_antecipado(livros, emprestimos, ra):
                     return
     print("Empréstimo não encontrado para esse RA e livro.")
 
-def renovar_emprestimo(emprestimos, ra):
+def renovar_emprestimo(emprestimos, ra): #Pode renovar a data de devolução do livro
     ativos = [e for e in emprestimos if e.get('ra')==ra and e.get('returned')=='no']
     if not ativos:
         print("Você não tem empréstimos para renovar."); return
@@ -204,4 +204,4 @@ def listar_meus_livros(livros, ra):
         for l in meus:
             print(f"ID:{l['id']} - {l['titulo']} — devolve até {l.get('due_date','-')}")
     else:
-        print("Você não tem livros emprestados.")
+        print("Você não tem livros emprestados.")  #Quando o usuario não tem livros para devolver
