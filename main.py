@@ -1,4 +1,4 @@
-# Trabalho Cris, Carla e Rafaela - Biblioteca Virtual
+# Trabalho Carla, Cristina e Rafaela - Biblioteca Virtual
 # Nome do sistema: Cosmos — Universo de Ideias
 from funcoes import (
     iniciar_sistema,  # importa dados iniciais
