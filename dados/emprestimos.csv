@@ -1,0 +1,2 @@
+loan_id,book_id,ra,loan_date,due_date,returned
+1,9,1138820,29/10/2025,05/11/2025,yes

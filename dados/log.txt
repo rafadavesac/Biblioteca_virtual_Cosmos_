@@ -1,0 +1,5 @@
+[29/10/2025 11:08:31] Cadastro: Rafaela Laimer Davesac (RA 1138820)
+[29/10/2025 11:09:02] Login: RA 1138820
+[29/10/2025 11:11:25] Login: RA 1138820
+[29/10/2025 11:11:41] Empréstimo: livro Frankenstein (ID 9) para RA 1138820
+[29/10/2025 11:11:53] Devolução: livro Frankenstein (ID 9) por RA 1138820
